@@ -23,10 +23,5 @@ namespace FunFoodServer.Domain.Model
         return null;
       }
     }
-
-    public bool Subscribe(User subscriber)
-    {
-      return true;
-    }
   }
 }
