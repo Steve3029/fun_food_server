@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
+// this interface will be as the type of all Entity domain objects
 namespace FunFoodServer.Domain
 {
     interface IEntity
