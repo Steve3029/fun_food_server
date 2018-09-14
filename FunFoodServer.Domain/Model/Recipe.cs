@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace FunFoodServer.Domain.Model
 {
@@ -22,6 +20,6 @@ namespace FunFoodServer.Domain.Model
 
       public List<Instruction> Instructions { get; set; }
 
-      public User Author { get; set; }
+      public Maker Maker { get; set; }
     }
 }
