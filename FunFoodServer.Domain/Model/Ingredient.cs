@@ -4,7 +4,7 @@ namespace FunFoodServer.Domain.Model
 {
     public class Ingredient
     {
-      public int IngredientNumber { set; get; }
+      public int Index { set; get; }
 
       public Guid RecipeId { set; get; }
 

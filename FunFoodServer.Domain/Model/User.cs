@@ -4,24 +4,28 @@ using System.Text;
 
 namespace FunFoodServer.Domain.Model
 {
-  public class User : AggregateRoot
-  {
-    public string UserName { set; get; }
+    public class User : AggregateRoot
+    {
+      public Guid AccountId { get; set; }
 
-    public string Password { set; get; }
+      public Account Account { get; set; }
 
-    public string Email { set; get; }
+      public string FirstName { get; set; }
 
-    public UserProfile Profile {
-      set
-      {
-        Profile = value;
-      }
-      get
-      {
-        // return a copy of profile
-        return null;
-      }
+      public string LastName { get; set; }
+
+      public int Gender { get; set; }
+
+      public DateTime Birthday { get; set; }
+
+      public string Location { get; set; }
+
+      public string GooglePlus { get; set; }
+
+      public string Twitter { get; set; }
+
+      public string Facebook { get; set; }
+
+      public string Youtube { get; set; }
     }
-  }
 }
