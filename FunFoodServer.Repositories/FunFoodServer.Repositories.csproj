@@ -12,4 +12,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FunFoodServer.Domain\FunFoodServer.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

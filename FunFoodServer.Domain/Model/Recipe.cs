@@ -24,6 +24,6 @@ namespace FunFoodServer.Domain.Model
 
       public Guid MakerId { get; set; }
 
-      public Account Maker { get; set; }
+      public UserProfile Maker { get; set; }
     }
 }
