@@ -26,13 +26,19 @@ namespace FunFoodServer.Repositories.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Email")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(40);
 
-                    b.Property<string>("Password");
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(20);
 
-                    b.Property<string>("PhotoUrl");
+                    b.Property<string>("PhotoUrl")
+                        .HasMaxLength(80);
 
-                    b.Property<string>("UserName");
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasMaxLength(30);
 
                     b.HasKey("Id");
 
@@ -47,25 +53,37 @@ namespace FunFoodServer.Repositories.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("Birthday");
+                    b.Property<DateTime>("Birthday")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(new DateTime(2018, 9, 26, 0, 0, 0, 0, DateTimeKind.Local));
 
-                    b.Property<string>("Facebook");
+                    b.Property<string>("Facebook")
+                        .HasMaxLength(50);
 
-                    b.Property<string>("FirstName");
+                    b.Property<string>("FirstName")
+                        .HasMaxLength(20);
 
-                    b.Property<int>("Gender");
+                    b.Property<int>("Gender")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(1)
+                        .HasDefaultValue(0);
 
-                    b.Property<string>("GooglePlus");
+                    b.Property<string>("GooglePlus")
+                        .HasMaxLength(50);
 
-                    b.Property<string>("LastName");
+                    b.Property<string>("LastName")
+                        .HasMaxLength(20);
 
-                    b.Property<string>("Location");
+                    b.Property<string>("Location")
+                        .HasMaxLength(30);
 
-                    b.Property<string>("Twitter");
+                    b.Property<string>("Twitter")
+                        .HasMaxLength(50);
 
                     b.Property<Guid>("UserId");
 
-                    b.Property<string>("Youtube");
+                    b.Property<string>("Youtube")
+                        .HasMaxLength(50);
 
                     b.HasKey("Id");
 
