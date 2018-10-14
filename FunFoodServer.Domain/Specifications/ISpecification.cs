@@ -8,10 +8,10 @@ namespace FunFoodServer.Domain.Specifications
   {
     // Returns a bool value that indicates whether 
     // the specification is satisfied by the given object. 
-    bool IsSatisfiedBy(T obj);
+    bool IsSatisfiedBy(T entity);
 
     // Gets the LINQ expression which represents the current specification.
-    Expression<Func<T, bool>> GetSpecification();
+    Expression<Func<T, bool>> ToExpression();
 
     // Combines the current specification instance with another one 
     // and returns the combined spcification that indicates both the 
@@ -23,14 +23,5 @@ namespace FunFoodServer.Domain.Specifications
     // current specification or another one should be satisfied by the given object.
     ISpecification<T> Or(ISpecification<T> other);
 
-    // Combines the current specification instance with another one 
-    // and returns the combined spcification that represents that the 
-    // current specification should be satisfied by the given object 
-    // but another one should not.
-    ISpecification<T> AndNot(ISpecification<T> other);
-
-    // Reverses the current specification instance and returns a specification 
-    // with represents the semantics opposite to the current specification.
-    ISpecification<T> Not();
   }
 }
