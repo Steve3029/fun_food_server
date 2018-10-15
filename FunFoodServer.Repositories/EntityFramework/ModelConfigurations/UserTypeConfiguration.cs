@@ -8,7 +8,7 @@ namespace FunFoodServer.Repositories.EntityFramework.ModelConfigurations
   {
     public void Configure(EntityTypeBuilder<User> builder)
     {
-      builder.ToTable("USER");
+      builder.ToTable("USERS");
       builder.HasKey(u => u.Id);
       builder.HasIndex(i => i.Email)
         .HasName("Index_Email");
