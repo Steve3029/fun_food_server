@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunFoodServer.Domain", "Fun
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunFoodServer.Repositories", "FunFoodServer.Repositories\FunFoodServer.Repositories.csproj", "{31131412-3794-4909-B194-A68705F91BCE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunFoodServer.Domain.Tests", "FunFoodServer.Domain.Tests\FunFoodServer.Domain.Tests.csproj", "{980DD258-27C4-4FB5-9D3C-7D6E9F791AE7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{31131412-3794-4909-B194-A68705F91BCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31131412-3794-4909-B194-A68705F91BCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31131412-3794-4909-B194-A68705F91BCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{980DD258-27C4-4FB5-9D3C-7D6E9F791AE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{980DD258-27C4-4FB5-9D3C-7D6E9F791AE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{980DD258-27C4-4FB5-9D3C-7D6E9F791AE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{980DD258-27C4-4FB5-9D3C-7D6E9F791AE7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
