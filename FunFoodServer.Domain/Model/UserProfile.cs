@@ -7,8 +7,6 @@ namespace FunFoodServer.Domain.Model
       #region Properties
       public Guid Id { get; set; }
 
-      public User User { get; set; }
-
       public Guid UserId { get; set; }
 
       public string FirstName { get; set; }
@@ -44,7 +42,6 @@ namespace FunFoodServer.Domain.Model
       public override int GetHashCode()
       {
         return this.Id.GetHashCode() ^
-               this.User.GetHashCode() ^
                this.FirstName.GetHashCode() ^
                this.LastName.GetHashCode() ^
                this.Gender.GetHashCode() ^

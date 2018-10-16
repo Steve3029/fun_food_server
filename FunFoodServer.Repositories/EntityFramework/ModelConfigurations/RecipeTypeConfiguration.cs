@@ -35,13 +35,23 @@ namespace FunFoodServer.Repositories.EntityFramework.ModelConfigurations
 
       builder.HasOne(t => t.Category)
              .WithMany(c => c.Recipes)
-             .HasForeignKey(t => t.CategoryId);
+             .IsRequired()
+             .OnDelete(DeleteBehavior.SetNull);
 
       builder.HasMany(t => t.Ingredients)
-             .WithOne(i => i.Recipe);
+             .WithOne();
 
       builder.HasMany(t => t.Instructions)
-             .WithOne(i => i.Recipe);
+             .WithOne();
+
+      builder.HasMany(t => t.Ratings)
+             .WithOne();
+
+      builder.HasOne(t => t.User)
+             .WithMany(u => u.Recipes)
+             .HasForeignKey(t => t.UserId)
+             .OnDelete(DeleteBehavior.Cascade);
+
     }
   }
 }

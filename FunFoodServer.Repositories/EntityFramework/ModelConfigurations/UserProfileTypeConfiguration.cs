@@ -15,7 +15,7 @@ namespace FunFoodServer.Repositories.EntityFramework.ModelConfigurations
         .HasKey(u => u.Id);
 
       builder.Property(t => t.UserId)
-        .IsRequired();
+             .IsRequired();
 
       builder.Property(t => t.FirstName)
         .HasMaxLength(50);
@@ -44,10 +44,6 @@ namespace FunFoodServer.Repositories.EntityFramework.ModelConfigurations
 
       builder.Property(t => t.Youtube)
         .HasMaxLength(50);
-
-      builder.HasOne(e => e.User)
-        .WithOne(u => u.Profile)
-        .HasForeignKey<UserProfile>(f => f.UserId);
     }
   }
 }

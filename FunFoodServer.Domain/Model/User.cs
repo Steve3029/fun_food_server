@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections.Generic;
 
 namespace FunFoodServer.Domain.Model
 {
@@ -16,6 +17,11 @@ namespace FunFoodServer.Domain.Model
     public string Email { set; get; }
 
     public string PhotoUrl { get; set; }
+
+    public ICollection<Recipe> Recipes { set; get; }
+
+    public ICollection<Favorite> Favorites { get; set; }
+
     #endregion
 
     #region Public methods

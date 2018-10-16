@@ -5,6 +5,10 @@ namespace FunFoodServer.Domain.Model
   {
     public Guid UserId { get; set; }
 
+    public User User { get; set; }
+
     public Guid RecipeId { set; get; }
+
+    public Recipe Recipe { set; get; }
   }
 }

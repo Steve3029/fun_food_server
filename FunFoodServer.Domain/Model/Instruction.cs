@@ -12,6 +12,5 @@ namespace FunFoodServer.Domain.Model
 
       public string Description { set; get; }
 
-      public Recipe Recipe { set; get; }
     }
 }

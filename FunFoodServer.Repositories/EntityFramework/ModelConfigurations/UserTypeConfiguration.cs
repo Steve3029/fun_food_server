@@ -30,8 +30,11 @@ namespace FunFoodServer.Repositories.EntityFramework.ModelConfigurations
 
 
       builder.HasOne(f => f.Profile)
-        .WithOne(p => p.User)
+        .WithOne()
         .HasForeignKey<UserProfile>(p => p.UserId);
+
+      builder.HasMany(t => t.Recipes)
+             .WithOne(r => r.User);
              
     }
   }
