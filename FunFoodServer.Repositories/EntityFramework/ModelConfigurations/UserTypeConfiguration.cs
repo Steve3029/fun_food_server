@@ -8,25 +8,25 @@ namespace FunFoodServer.Repositories.EntityFramework.ModelConfigurations
   {
     public void Configure(EntityTypeBuilder<User> builder)
     {
-      builder.ToTable("USERS");
+      builder.ToTable("T_USERS");
       builder.HasKey(u => u.Id);
       builder.HasIndex(i => i.Email)
         .HasName("Index_Email");
 
       builder.Property(t => t.Email)
         .IsRequired()
-        .HasMaxLength(40);
+        .HasMaxLength(50);
 
       builder.Property(t => t.UserName)
         .IsRequired()
-        .HasMaxLength(30);
+        .HasMaxLength(50);
 
       builder.Property(t => t.Password)
         .IsRequired()
-        .HasMaxLength(20);
+        .HasMaxLength(50);
 
       builder.Property(t => t.PhotoUrl)
-        .HasMaxLength(80);
+        .HasMaxLength(100);
 
 
       builder.HasOne(f => f.Profile)

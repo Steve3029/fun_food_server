@@ -11,5 +11,7 @@ namespace FunFoodServer.Domain.Model
       public string ImageUrl { set; get; }
 
       public string Description { set; get; }
+
+      public Recipe Recipe { set; get; }
     }
 }

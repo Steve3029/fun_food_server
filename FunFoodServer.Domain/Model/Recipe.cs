@@ -10,6 +10,8 @@ namespace FunFoodServer.Domain.Model
 
       public string BriefDesc { set; get; }
 
+      public Guid CategoryId { get; set; }
+
       public Category Category { set; get; }
 
       public string Description { get; set; }
@@ -18,12 +20,12 @@ namespace FunFoodServer.Domain.Model
 
       public int Serving { get; set; }
 
-      public List<Ingredient> Ingredients { get; set; }
+      public ICollection<Ingredient> Ingredients { get; set; }
 
-      public List<Instruction> Instructions { get; set; }
+      public ICollection<Instruction> Instructions { get; set; }
 
-      public Guid MakerId { get; set; }
+      public ICollection<Rating> Ratings { get; set; }
 
-      public UserProfile Maker { get; set; }
+      public DateTime CreateDate { get; set; }
     }
 }

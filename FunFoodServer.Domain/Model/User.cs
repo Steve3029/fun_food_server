@@ -3,10 +3,9 @@ using System;
 
 namespace FunFoodServer.Domain.Model
 {
-  public class User : IEntity
+  public class User : AggregateRoot
   {
     #region Properties
-    public Guid Id { get; set; }
 
     public UserProfile Profile { get; set; }
 

@@ -11,17 +11,17 @@ namespace FunFoodServer.Repositories.EntityFramework.ModelConfigurations
   {
     public void Configure(EntityTypeBuilder<UserProfile> builder)
     {
-      builder.ToTable("USER_PROFILE")
+      builder.ToTable("T_USER_PROFILE")
         .HasKey(u => u.Id);
 
       builder.Property(t => t.UserId)
         .IsRequired();
 
       builder.Property(t => t.FirstName)
-        .HasMaxLength(20);
+        .HasMaxLength(50);
 
       builder.Property(t => t.LastName)
-        .HasMaxLength(20);
+        .HasMaxLength(50);
 
       builder.Property(t => t.Gender)
         .HasDefaultValue(0)
@@ -31,7 +31,7 @@ namespace FunFoodServer.Repositories.EntityFramework.ModelConfigurations
         .HasDefaultValue(DateTime.Today);
 
       builder.Property(t => t.Location)
-        .HasMaxLength(30);
+        .HasMaxLength(100);
 
       builder.Property(t => t.GooglePlus)
         .HasMaxLength(50);

@@ -2,9 +2,11 @@
 
 namespace FunFoodServer.Domain.Model
 {
-    public class UserProfile : AggregateRoot
+    public class UserProfile : IEntity
     {
       #region Properties
+      public Guid Id { get; set; }
+
       public User User { get; set; }
 
       public Guid UserId { get; set; }
