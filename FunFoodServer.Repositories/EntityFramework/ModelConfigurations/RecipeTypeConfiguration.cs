@@ -30,7 +30,7 @@ namespace FunFoodServer.Repositories.EntityFramework.ModelConfigurations
       builder.Property(t => t.Serving)
              .IsRequired();
 
-      builder.Property(t => t.CreateDate)
+      builder.Property(t => t.PostDate)
              .IsRequired();
 
       builder.HasOne(t => t.Category)

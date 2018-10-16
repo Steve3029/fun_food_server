@@ -26,6 +26,6 @@ namespace FunFoodServer.Domain.Model
 
       public ICollection<Rating> Ratings { get; set; }
 
-      public DateTime CreateDate { get; set; }
+      public DateTime PostDate { get; set; }
     }
 }
