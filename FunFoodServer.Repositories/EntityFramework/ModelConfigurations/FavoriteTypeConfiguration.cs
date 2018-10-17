@@ -9,7 +9,8 @@ namespace FunFoodServer.Repositories.EntityFramework.ModelConfigurations
   {
     public void Configure(EntityTypeBuilder<Favorite> builder)
     {
-      builder.HasKey(f => new { f.UserId, f.RecipeId });
+      builder.ToTable("T_FAVORITE")
+             .HasKey(f => new { f.UserId, f.RecipeId });
 
       builder.HasOne(f => f.User)
              .WithMany(u => u.Favorites)

@@ -9,8 +9,10 @@ namespace FunFoodServer.Domain.Model
 
     public Guid UserId { get; set; }
 
+    public User User { get; set; }
+
     public int Scores { get; set; }
 
-    public DateTime PostDate { set; get; }
+    public DateTime RateDate { set; get; }
   }
 }

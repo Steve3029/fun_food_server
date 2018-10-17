@@ -9,16 +9,18 @@ namespace FunFoodServer.Repositories.EntityFramework.ModelConfigurations
   {
     public void Configure(EntityTypeBuilder<Category> builder)
     {
-      builder.ToTable("T_CATEGORIES");
+      builder.ToTable("T_CATEGORIES")
+             .HasKey(c => c.Id);
 
-      builder.HasKey(t => t.Id);
-      builder.Property(t => t.Name)
+      builder.Property(c => c.Name)
              .IsRequired()
              .HasMaxLength(100);
-      builder.Property(t => t.Description)
-             .HasMaxLength(200);
-      builder.HasMany(t => t.Recipes)
-             .WithOne(r => r.Category);
+
+      builder.Property(c => c.Description)
+             .HasMaxLength(500);
+
+      builder.HasMany(c => c.Recipes)
+             .WithOne();
     }
   }
 }

@@ -8,7 +8,7 @@ namespace FunFoodServer.Domain.Model
   {
     public string Title { set; get; }
 
-    public string BriefDesc { set; get; }
+    public string Subtitle { set; get; }
 
     public string Description { get; set; }
 
@@ -24,7 +24,7 @@ namespace FunFoodServer.Domain.Model
 
     public ICollection<Favorite> Favorites { get; set; }
 
-    public DateTime PostDate { get; set; }
+    public DateTime CreateDate { get; set; }
 
   }
 }

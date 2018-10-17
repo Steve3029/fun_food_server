@@ -15,7 +15,7 @@ namespace FunFoodServer.Domain.Model
 
       public string LastName { get; set; }
 
-      public int Gender { get; set; }
+      public char Gender { get; set; }
 
       public DateTime Birthday { get; set; }
 

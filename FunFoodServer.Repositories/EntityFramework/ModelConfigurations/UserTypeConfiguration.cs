@@ -8,33 +8,37 @@ namespace FunFoodServer.Repositories.EntityFramework.ModelConfigurations
   {
     public void Configure(EntityTypeBuilder<User> builder)
     {
-      builder.ToTable("T_USERS");
-      builder.HasKey(u => u.Id);
-      builder.HasIndex(i => i.Email)
-        .HasName("Index_Email");
+      builder.ToTable("T_USERS")
+             .HasKey(u => u.Id);
 
-      builder.Property(t => t.Email)
-        .IsRequired()
-        .HasMaxLength(50);
+      builder.HasIndex(u => u.Email)
+             .HasName("Index_Email");
 
-      builder.Property(t => t.UserName)
-        .IsRequired()
-        .HasMaxLength(50);
+      builder.Property(u => u.Email)
+             .IsRequired()
+             .HasMaxLength(100);
 
-      builder.Property(t => t.Password)
-        .IsRequired()
-        .HasMaxLength(50);
+      builder.Property(u => u.UserName)
+             .IsRequired()
+             .HasMaxLength(50);
 
-      builder.Property(t => t.PhotoUrl)
-        .HasMaxLength(100);
+      builder.Property(u => u.Password)
+             .IsRequired()
+             .HasMaxLength(50);
 
+      builder.Property(u => u.PhotoUrl)
+             .HasMaxLength(100);
 
-      builder.HasOne(f => f.Profile)
-        .WithOne()
-        .HasForeignKey<UserProfile>(p => p.UserId);
+      builder.Property(u => u.CreateDate)
+             .IsRequired()
+             .HasDefaultValueSql("getdate()");
 
-      builder.HasMany(t => t.Recipes)
-             .WithOne(r => r.User);
+      builder.HasOne(u => u.Profile)
+             .WithOne(up => up.User)
+             .HasForeignKey<UserProfile>(up => up.UserId);
+
+      builder.HasMany(u => u.Recipes)
+             .WithOne();
              
     }
   }

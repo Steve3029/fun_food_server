@@ -12,38 +12,33 @@ namespace FunFoodServer.Repositories.EntityFramework.ModelConfigurations
     public void Configure(EntityTypeBuilder<UserProfile> builder)
     {
       builder.ToTable("T_USER_PROFILE")
-        .HasKey(u => u.Id);
+        .HasKey(up => up.Id);
 
-      builder.Property(t => t.UserId)
-             .IsRequired();
-
-      builder.Property(t => t.FirstName)
+      builder.Property(up => up.FirstName)
         .HasMaxLength(50);
 
-      builder.Property(t => t.LastName)
+      builder.Property(up => up.LastName)
         .HasMaxLength(50);
 
-      builder.Property(t => t.Gender)
-        .HasDefaultValue(0)
-        .HasMaxLength(1);
+      builder.Property(up => up.Gender)
+        .HasDefaultValue('M');
 
-      builder.Property(t => t.Birthday)
-        .HasDefaultValue(DateTime.Today);
+      builder.Property(up => up.Birthday);
 
-      builder.Property(t => t.Location)
+      builder.Property(up => up.Location)
         .HasMaxLength(100);
 
-      builder.Property(t => t.GooglePlus)
-        .HasMaxLength(50);
+      builder.Property(up => up.GooglePlus)
+        .HasMaxLength(100);
 
-      builder.Property(t => t.Facebook)
-        .HasMaxLength(50);
+      builder.Property(up => up.Facebook)
+        .HasMaxLength(100);
 
-      builder.Property(t => t.Twitter)
-        .HasMaxLength(50);
+      builder.Property(up => up.Twitter)
+        .HasMaxLength(100);
 
-      builder.Property(t => t.Youtube)
-        .HasMaxLength(50);
+      builder.Property(up => up.Youtube)
+        .HasMaxLength(100);
     }
   }
 }

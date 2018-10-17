@@ -10,47 +10,39 @@ namespace FunFoodServer.Repositories.EntityFramework.ModelConfigurations
     public void Configure(EntityTypeBuilder<Recipe> builder)
     {
       builder.ToTable("T_RECIPES")
-             .HasKey(t => t.Id);
+             .HasKey(r => r.Id);
 
-      builder.Property(t => t.Title)
-             .IsRequired()
-             .HasMaxLength(200);
-
-      builder.Property(t => t.BriefDesc)
-             .IsRequired()
-             .HasMaxLength(200);
-
-      builder.Property(t => t.Description)
-             .HasMaxLength(500);
-
-      builder.Property(t => t.CoverImageUrl)
+      builder.Property(r => r.Title)
              .IsRequired()
              .HasMaxLength(100);
 
-      builder.Property(t => t.Serving)
-             .IsRequired();
-
-      builder.Property(t => t.PostDate)
-             .IsRequired();
-
-      builder.HasOne(t => t.Category)
-             .WithMany(c => c.Recipes)
+      builder.Property(r => r.Subtitle)
              .IsRequired()
-             .OnDelete(DeleteBehavior.SetNull);
+             .HasMaxLength(150);
 
-      builder.HasMany(t => t.Ingredients)
+      builder.Property(r => r.Description)
+             .IsRequired()
+             .HasMaxLength(500);
+
+      builder.Property(r => r.CoverImageUrl)
+             .IsRequired()
+             .HasMaxLength(100);
+
+      builder.Property(r => r.Serving)
+             .IsRequired();
+
+      builder.Property(r => r.CreateDate)
+             .HasDefaultValueSql("getdate()");
+
+      builder.HasMany(r => r.Ingredients)
              .WithOne();
 
-      builder.HasMany(t => t.Instructions)
+      builder.HasMany(r => r.Instructions)
              .WithOne();
 
-      builder.HasMany(t => t.Ratings)
+      builder.HasMany(r => r.Ratings)
              .WithOne();
 
-      builder.HasOne(t => t.User)
-             .WithMany(u => u.Recipes)
-             .HasForeignKey(t => t.UserId)
-             .OnDelete(DeleteBehavior.Cascade);
 
     }
   }

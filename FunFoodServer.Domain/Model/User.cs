@@ -18,6 +18,8 @@ namespace FunFoodServer.Domain.Model
 
     public string PhotoUrl { get; set; }
 
+    public DateTime CreateDate { get; set; }
+
     public ICollection<Recipe> Recipes { set; get; }
 
     public ICollection<Favorite> Favorites { get; set; }

@@ -12,8 +12,6 @@ namespace FunFoodServer.Domain.Model
 
     public string Unit { set; get; }
 
-    public string Quantity { get; set; }
-
     public override bool Equals(object obj)
     {
       if (obj == null)
