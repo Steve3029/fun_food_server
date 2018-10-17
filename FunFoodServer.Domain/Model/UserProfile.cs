@@ -9,6 +9,8 @@ namespace FunFoodServer.Domain.Model
 
       public Guid UserId { get; set; }
 
+      public User User { get; set; }
+
       public string FirstName { get; set; }
 
       public string LastName { get; set; }
@@ -52,11 +54,7 @@ namespace FunFoodServer.Domain.Model
                this.Facebook.GetHashCode() ^
                this.Youtube.GetHashCode();
       }
-      
-      public string IfHaveEntityMehtod()
-      {
-      return "if you can read this msg";
-      }
+
       #endregion
 
     }
