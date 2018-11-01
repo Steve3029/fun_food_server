@@ -23,6 +23,12 @@ namespace FunFoodServer.Repositories.EntityFramework
 
       modelBuilder.ApplyConfiguration(new UserTypeConfiguration());
       modelBuilder.ApplyConfiguration(new UserProfileTypeConfiguration());
+      modelBuilder.ApplyConfiguration(new CategoryTypeConfiguration());
+      modelBuilder.ApplyConfiguration(new RecipeTypeConfiguration());
+      modelBuilder.ApplyConfiguration(new IngredientTypeConfiguration());
+      modelBuilder.ApplyConfiguration(new InstructionTypeConfiguration());
+      modelBuilder.ApplyConfiguration(new RatingTypeConfiguration());
+      modelBuilder.ApplyConfiguration(new FavoriteTypeConfiguration());
 
       base.OnModelCreating(modelBuilder);
     }

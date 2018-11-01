@@ -4,26 +4,27 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FunFoodServer.Domain.Model
 {
-    public class Recipe : AggregateRoot
-    {
-      public string Title { set; get; }
+  public class Recipe : AggregateRoot
+  {
+    public string Title { set; get; }
 
-      public string BriefDesc { set; get; }
+    public string Subtitle { set; get; }
 
-      public Category Category { set; get; }
+    public string Description { get; set; }
 
-      public string Description { get; set; }
+    public string CoverImageUrl { get; set; }
 
-      public string CoverImageUrl { get; set; }
+    public int Serving { get; set; }
 
-      public int Serving { get; set; }
+    public ICollection<Ingredient> Ingredients { get; set; }
 
-      public List<Ingredient> Ingredients { get; set; }
+    public ICollection<Instruction> Instructions { get; set; }
 
-      public List<Instruction> Instructions { get; set; }
+    public ICollection<Rating> Ratings { get; set; }
 
-      public Guid MakerId { get; set; }
+    public ICollection<Favorite> Favorites { get; set; }
 
-      public UserProfile Maker { get; set; }
-    }
+    public DateTime CreateDate { get; set; }
+
+  }
 }

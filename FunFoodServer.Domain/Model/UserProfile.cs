@@ -2,18 +2,20 @@
 
 namespace FunFoodServer.Domain.Model
 {
-    public class UserProfile : AggregateRoot
+    public class UserProfile : IEntity
     {
       #region Properties
-      public User User { get; set; }
+      public Guid Id { get; set; }
 
       public Guid UserId { get; set; }
+
+      public User User { get; set; }
 
       public string FirstName { get; set; }
 
       public string LastName { get; set; }
 
-      public int Gender { get; set; }
+      public char Gender { get; set; }
 
       public DateTime Birthday { get; set; }
 
@@ -42,7 +44,6 @@ namespace FunFoodServer.Domain.Model
       public override int GetHashCode()
       {
         return this.Id.GetHashCode() ^
-               this.User.GetHashCode() ^
                this.FirstName.GetHashCode() ^
                this.LastName.GetHashCode() ^
                this.Gender.GetHashCode() ^
@@ -53,11 +54,7 @@ namespace FunFoodServer.Domain.Model
                this.Facebook.GetHashCode() ^
                this.Youtube.GetHashCode();
       }
-      
-      public string IfHaveEntityMehtod()
-      {
-      return "if you can read this msg";
-      }
+
       #endregion
 
     }

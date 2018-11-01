@@ -11,43 +11,34 @@ namespace FunFoodServer.Repositories.EntityFramework.ModelConfigurations
   {
     public void Configure(EntityTypeBuilder<UserProfile> builder)
     {
-      builder.ToTable("USER_PROFILE")
-        .HasKey(u => u.Id);
+      builder.ToTable("T_USER_PROFILE")
+        .HasKey(up => up.Id);
 
-      builder.Property(t => t.UserId)
-        .IsRequired();
-
-      builder.Property(t => t.FirstName)
-        .HasMaxLength(20);
-
-      builder.Property(t => t.LastName)
-        .HasMaxLength(20);
-
-      builder.Property(t => t.Gender)
-        .HasDefaultValue(0)
-        .HasMaxLength(1);
-
-      builder.Property(t => t.Birthday)
-        .HasDefaultValue(DateTime.Today);
-
-      builder.Property(t => t.Location)
-        .HasMaxLength(30);
-
-      builder.Property(t => t.GooglePlus)
+      builder.Property(up => up.FirstName)
         .HasMaxLength(50);
 
-      builder.Property(t => t.Facebook)
+      builder.Property(up => up.LastName)
         .HasMaxLength(50);
 
-      builder.Property(t => t.Twitter)
-        .HasMaxLength(50);
+      builder.Property(up => up.Gender)
+        .HasDefaultValue('M');
 
-      builder.Property(t => t.Youtube)
-        .HasMaxLength(50);
+      builder.Property(up => up.Birthday);
 
-      builder.HasOne(e => e.User)
-        .WithOne(u => u.Profile)
-        .HasForeignKey<UserProfile>(f => f.UserId);
+      builder.Property(up => up.Location)
+        .HasMaxLength(100);
+
+      builder.Property(up => up.GooglePlus)
+        .HasMaxLength(100);
+
+      builder.Property(up => up.Facebook)
+        .HasMaxLength(100);
+
+      builder.Property(up => up.Twitter)
+        .HasMaxLength(100);
+
+      builder.Property(up => up.Youtube)
+        .HasMaxLength(100);
     }
   }
 }

@@ -14,10 +14,9 @@ namespace FunFoodServer.Domain.Model
           return false;
         if (ReferenceEquals(this, obj))
           return true;
-        IAggregateRoot castObj = obj as IAggregateRoot;
-        if (castObj == null)
+        if (!(obj is IAggregateRoot castObj))
           return false;
-        return castObj.Id == castObj.Id;
+        return castObj.Id == Id;
       }
 
       public override int GetHashCode()

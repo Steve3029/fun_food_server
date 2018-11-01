@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Linq.Expressions;
 
 namespace FunFoodServer.Domain.Specifications
 {
@@ -8,29 +7,20 @@ namespace FunFoodServer.Domain.Specifications
   {
     public ISpecification<T> And(ISpecification<T> other)
     {
-      return new AndSpcification(other);
+      return new AndSpecification<T>(this, other);
     }
 
-    public ISpecification<T> AndNot(ISpecification<T> other)
+    public bool IsSatisfiedBy(T entity)
     {
-      throw new NotImplementedException();
-    }
-
-    public abstract System.Linq.Expressions.Expression<Func<T, bool>> GetSpecification();
-
-    public bool IsSatisfiedBy(T obj)
-    {
-      throw new NotImplementedException();
-    }
-
-    public ISpecification<T> Not()
-    {
-      throw new NotImplementedException();
+      Func<T, bool> predicate = ToExpression().Compile();
+      return predicate.Invoke(entity);
     }
 
     public ISpecification<T> Or(ISpecification<T> other)
     {
-      throw new NotImplementedException();
+      return new OrSpecification<T>(this, other);
     }
+
+    public abstract Expression<Func<T, bool>> ToExpression();
   }
 }
