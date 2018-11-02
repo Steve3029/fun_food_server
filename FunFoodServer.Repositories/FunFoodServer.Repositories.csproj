@@ -22,7 +22,4 @@
   <ItemGroup>
     <Folder Include="EntityFramework\ModelConfigurations\" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="Migrations\FunFoodDbContextModelSnapshot.cs" />
-  </ItemGroup>
 </Project>

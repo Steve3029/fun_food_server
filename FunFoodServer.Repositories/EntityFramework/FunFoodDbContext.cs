@@ -8,6 +8,15 @@ namespace FunFoodServer.Repositories.EntityFramework
 {
   internal class FunFoodDbContext : DbContext
   {
+    public FunFoodDbContext()
+    {
+    }
+
+    public FunFoodDbContext(DbContextOptions<FunFoodDbContext> options)
+      :base(options)
+    {
+    }
+
     public DbSet<Category> Category { get; set; }
 
     public DbSet<Favorite> Favorite { get; set; }
