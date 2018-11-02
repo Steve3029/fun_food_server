@@ -19,4 +19,7 @@
     <ProjectReference Include="..\FunFoodServer.Domain\FunFoodServer.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="EntityFramework\ModelConfigurations\" />
+  </ItemGroup>
 </Project>
