@@ -1,10 +1,8 @@
-﻿using FunFoodServer.Domain;
-
-namespace FunFoodServer.Infrastructure
+﻿using System;
+namespace FunFoodServer.Domain.Repositories
 {
   public interface IUnitOfWork
   {
-
     void RegisterNew<TAggregateRoot>(TAggregateRoot entity)
       where TAggregateRoot : class, IAggregateRoot;
 
@@ -15,5 +13,10 @@ namespace FunFoodServer.Infrastructure
     void RegisterDelete<TAggregateRoot>(TAggregateRoot entity)
       where TAggregateRoot : class, IAggregateRoot;
 
+    void Commit();
+
+    bool Committed { get; }
+
+    void Rollback();
   }
 }
