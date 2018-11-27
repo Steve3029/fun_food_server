@@ -7,7 +7,4 @@
   <ItemGroup>
     <Compile Remove="Class1.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\FunFoodServer.Domain\FunFoodServer.Domain.csproj" />
-  </ItemGroup>
 </Project>
