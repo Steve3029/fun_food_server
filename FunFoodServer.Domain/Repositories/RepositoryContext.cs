@@ -101,6 +101,14 @@ namespace FunFoodServer.Domain.Repositories
       _committed.Value = !(removeFromModified || addedToDeleted);
     }
 
+    protected override void Dispose(bool disposing)
+    {
+      _committed.Dispose();
+      _newEntities.Dispose();
+      _modifiedEntities.Dispose();
+      _deletedEntities.Dispose();
+    }
+
     public abstract void Commit();
 
     public abstract void Rollback();
