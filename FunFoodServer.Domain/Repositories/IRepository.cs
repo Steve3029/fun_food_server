@@ -50,6 +50,47 @@ namespace FunFoodServer.Domain.Repositories
     TAggregateRoot Get(ISpecification<TAggregateRoot> specification);
     // get single aggregate root instance from repo by using given specification and specifying eager loading properties of the instance
     TAggregateRoot Get(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties);
-
+    // find all aggregate roots from repository
+    IEnumerable<TAggregateRoot> FindAll();
+    // find all aggregate roots from repository with paging enable
+    IEnumerable<TAggregateRoot> FindAll(int pageNumber, int pageSize);
+    // find all aggregates from repository with sortable
+    IEnumerable<TAggregateRoot> FindAll(Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder);
+    // find all aggregate roots for a page from repository using specific sorting predicate and order
+    IEnumerable<TAggregateRoot> FindAll(Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, int pageNumber, int pageSize);
+    // find all aggregate roots that match the given specification
+    IEnumerable<TAggregateRoot> FindAll(ISpecification<TAggregateRoot> specification);
+    // find all aggregate roots for the specified page that match the given specification
+    IEnumerable<TAggregateRoot> FindAll(ISpecification<TAggregateRoot> specification, int pageNumber, int pageSize);
+    // find all aggregate roots that were sorted by using given sorting predicate and sort and match the given specification
+    IEnumerable<TAggregateRoot> FindAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder);
+    // find all aggregate roots for a specified page that match the given specification and were sorted by using the given sorting predicate and sort order
+    IEnumerable<TAggregateRoot> FindAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, int pageNumber, int pageSize);
+    // find all aggregate roots and specify the properties that need to be eager loaded along with its parent aggregate root
+    IEnumerable<TAggregateRoot> FindAll(params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties);
+    // find aggregate roots for a specific page and specified eager loading properties for these aggregate roots
+    IEnumerable<TAggregateRoot> FindAll(int pageNumber, int pageSize, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties);
+    // find aggregate roots, specifing eager loading properties and using sorting predicate and order
+    IEnumerable<TAggregateRoot> FindAll(Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties);
+    // find aggregate roots for a specific page, using sorting predicate and order and specifying eager loading properties
+    IEnumerable<TAggregateRoot> FindAll(Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, int pageNumber, int pageSize, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties);
+    // find aggregate roots, using specification and specifying eager loading properties
+    IEnumerable<TAggregateRoot> FindAll(ISpecification<TAggregateRoot> specification, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties);
+    // find aggregate roots for a specific page, using specification and specifying eager loading properties
+    IEnumerable<TAggregateRoot> FindAll(ISpecification<TAggregateRoot> specification, int pageNumnber, int pageSize, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties);
+    // find aggregate roots, using sorting predicate and order and specifying eager loading properties
+    IEnumerable<TAggregateRoot> FindAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties);
+    // find aggregate roots for a specific page, specifying eager loading properties and using sorting predicate and order
+    IEnumerable<TAggregateRoot> FindAll(ISpecification<TAggregateRoot> specification, int pageNumber, int pageSize, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties);
+    // find single aggregate root instance from repo by using given specification
+    TAggregateRoot Find(ISpecification<TAggregateRoot> specification);
+    // find single aggregate root instance from repo by using given specification and specifying eager loading properties of the instance
+    TAggregateRoot Find(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties);
+    // check if a aggregate root which matches the given specification is exists in repo
+    bool Exists(ISpecification<TAggregateRoot> specification);
+    // delete a aggregate root from repo
+    void Remove(TAggregateRoot aggregateRoot);
+    // update a aggregate root in repo
+    void Update(TAggregateRoot aggregateRoot);
   } 
 }
