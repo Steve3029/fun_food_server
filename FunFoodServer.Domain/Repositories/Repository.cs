@@ -13,6 +13,7 @@ namespace FunFoodServer.Domain.Repositories
     {
       this._context = context;
     }
+    #region protected methods
     // Adds an aggregate root to repo
     protected abstract void DoAdd(TAggregateRoot aggregateRoot);
     // Gets an aggregate root from repo by a given key
@@ -86,5 +87,76 @@ namespace FunFoodServer.Domain.Repositories
 
     protected abstract IEnumerable<TAggregateRoot> DoGetAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, int pageNumber, int pageSize, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties);
 
+    protected IEnumerable<TAggregateRoot> DoFindAll()
+    {
+      return DoFindAll(new AnySpecification<TAggregateRoot>(), null, SortOrder.Unspecified);
+    }
+
+    protected IEnumerable<TAggregateRoot> DoFindAll(int pageNumber, int pageSize)
+    {
+      return DoFindAll(new AnySpecification<TAggregateRoot>(), null, SortOrder.Unspecified, pageNumber, pageSize);
+    }
+
+    protected IEnumerable<TAggregateRoot> DoFindAll(Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder)
+    {
+      return DoFindAll(new AnySpecification<TAggregateRoot>(), sortPredicate, sortOrder);
+    }
+
+    protected IEnumerable<TAggregateRoot> DoFindAll(Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, int pageNumber, int pageSize)
+    {
+      return DoFindAll(new AnySpecification<TAggregateRoot>(), sortPredicate, sortOrder, pageNumber, pageSize);
+    }
+
+    protected IEnumerable<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> specification)
+    {
+      return DoFindAll(specification, null, SortOrder.Unspecified);
+    }
+
+    protected IEnumerable<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> specification, int pageNumber, int pageSize)
+    {
+      return DoFindAll(specification, null, SortOrder.Unspecified, pageNumber, pageSize);
+    }
+
+    protected IEnumerable<TAggregateRoot> DoFindAll(params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties)
+    {
+      return DoFindAll(new AnySpecification<TAggregateRoot>(), null, SortOrder.Unspecified, eagerLoadingProperties);
+    }
+
+    protected IEnumerable<TAggregateRoot> DoFindAll(int pageNumber, int pageSize, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties)
+    {
+      return DoFindAll(new AnySpecification<TAggregateRoot>(), null, SortOrder.Unspecified, pageNumber, pageSize, eagerLoadingProperties);
+    }
+
+    protected IEnumerable<TAggregateRoot> DoFindAll(Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties)
+    {
+      return DoFindAll(new AnySpecification<TAggregateRoot>(), sortPredicate, sortOrder, eagerLoadingProperties);
+    }
+
+    protected IEnumerable<TAggregateRoot> DoFindAll(Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, int pageNumber, int pageSize, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties)
+    {
+      return DoFindAll(new AnySpecification<TAggregateRoot>(), sortPredicate, sortOrder, pageNumber, pageSize, eagerLoadingProperties);
+    }
+
+    protected IEnumerable<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties)
+    {
+      return DoFindAll(specification, null, SortOrder.Unspecified, eagerLoadingProperties);
+    }
+
+    protected IEnumerable<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> specification, int pageNumber, int pageSize, Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties)
+    {
+      return DoFindAll(new AnySpecification<TAggregateRoot>(), null, SortOrder.Unspecified, pageNumber, pageSize, eagerLoadingProperties);
+    }
+
+    protected abstract IEnumerable<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder);
+
+    protected abstract IEnumerable<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, int pageNumber, int pageSize);
+
+    protected abstract IEnumerable<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties);
+
+    protected abstract IEnumerable<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, int pageNumber, int pageSize, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties);
+    #endregion
+
+    #region IRepository<TAggregateRoot> members
+    #endregion
   }
 }
