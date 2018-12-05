@@ -154,9 +154,126 @@ namespace FunFoodServer.Domain.Repositories
     protected abstract IEnumerable<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties);
 
     protected abstract IEnumerable<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, int pageNumber, int pageSize, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties);
+
+    protected abstract TAggregateRoot DoGet(ISpecification<TAggregateRoot> specification);
+
+    protected abstract TAggregateRoot DoFind(ISpecification<TAggregateRoot> specification);
+
+    protected abstract TAggregateRoot DoGet(ISpecification<TAggregateRoot> specification, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties);
+
+    protected abstract TAggregateRoot DoFind(ISpecification<TAggregateRoot> specification, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties);
+
+    protected abstract TAggregateRoot DoExists(ISpecification<TAggregateRoot> specification);
+
+    protected abstract void DoRemove(TAggregateRoot aggregate);
+
+    protected abstract void DoUpdate(TAggregateRoot aggregate);
+
     #endregion
 
     #region IRepository<TAggregateRoot> members
+
+    public void Add(TAggregateRoot aggregateRoot)
+    {
+      this.DoAdd(aggregateRoot);
+    }
+
+    public TAggregateRoot GetByKey(Guid key)
+    {
+      return this.DoGetByKey(key);
+    }
+
+    public IEnumerable<TAggregateRoot> GetAll()
+    {
+      return this.DoGetAll();
+    }
+
+    public IEnumerable<TAggregateRoot> GetAll(int pageNumber, int pageSize)
+    {
+      return this.DoGetAll(pageNumber, pageSize);
+    }
+
+    public IEnumerable<TAggregateRoot> GetAll(Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder)
+    {
+      return this.DoGetAll(sortPredicate, sortOrder);
+    }
+
+    public IEnumerable<TAggregateRoot> GetAll(Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, int pageNumber, int pageSize)
+    {
+      return this.DoGetAll(sortPredicate, sortOrder, pageNumber, pageSize);
+    }
+
+    public IEnumerable<TAggregateRoot> GetAll(ISpecification<TAggregateRoot> specification)
+    {
+      return this.DoGetAll(specification);
+    }
+
+    public IEnumerable<TAggregateRoot> GetAll(ISpecification<TAggregateRoot> specification, int pageNumber, int pageSize)
+    {
+      return DoGetAll(specification, pageNumber, pageSize);
+    }
+
+    public IEnumerable<TAggregateRoot> GetAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder)
+    {
+      return this.DoGetAll(specification, sortPredicate, sortOrder);
+    }
+
+    public IEnumerable<TAggregateRoot> GetAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, int pageNumber, int pageSize)
+    {
+      return this.DoGetAll(specification, sortPredicate, sortOrder, pageNumber, pageSize);
+    }
+
+    public IEnumerable<TAggregateRoot> GetAll(params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties)
+    {
+      return this.DoGetAll(eagerLoadingProperties);
+    }
+
+    public IEnumerable<TAggregateRoot> GetAll(int pageNumber, int pageSize, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties)
+    {
+      return this.DoGetAll(pageNumber, pageSize, eagerLoadingProperties);
+    }
+
+    public IEnumerable<TAggregateRoot> GetAll(Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties)
+    {
+      return this.DoGetAll(sortPredicate, sortOrder, eagerLoadingProperties);
+    }
+
+    public IEnumerable<TAggregateRoot> GetAll(Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, int pageNumber, int pageSize, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties)
+    {
+      return this.DoGetAll(sortPredicate, sortOrder, pageNumber, pageSize, eagerLoadingProperties);
+    }
+
+    public IEnumerable<TAggregateRoot> GetAll(ISpecification<TAggregateRoot> specification, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties)
+    {
+      return this.DoGetAll(specification, eagerLoadingProperties);
+    }
+
+    public IEnumerable<TAggregateRoot> GetAll(ISpecification<TAggregateRoot> specification, int pageNumnber, int pageSize, params Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties)
+    {
+      return this.DoGetAll(specification, pageNumnber, pageSize, eagerLoadingProperties);
+    }
+
+    public IEnumerable<TAggregateRoot> GetAll(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties)
+    {
+      return this.DoGetAll(specification, sortPredicate, sortOrder, eagerLoadingProperties);
+    }
+
+    public IEnumerable<TAggregateRoot> GetAll(ISpecification<TAggregateRoot> specification, int pageNumber, int pageSize, Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties)
+    {
+      return this.DoGetAll(specification, sortPredicate, sortOrder, pageNumber, pageSize,  eagerLoadingProperties);
+    }
+
+    public TAggregateRoot Get(ISpecification<TAggregateRoot> specification)
+    {
+      return this.DoGet(specification);
+    }
+
+    public TAggregateRoot Get(ISpecification<TAggregateRoot> specification, Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties)
+    {
+      return this.DoGet(specification, eagerLoadingProperties);
+    }
+
+
     #endregion
   }
 }
