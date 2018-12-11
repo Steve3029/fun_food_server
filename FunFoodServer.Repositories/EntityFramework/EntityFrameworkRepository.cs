@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using FunFoodServer.Domain;
 using FunFoodServer.Domain.Repositories;
 using FunFoodServer.Domain.Specifications;
@@ -9,24 +11,60 @@ namespace FunFoodServer.Repositories.EntityFramework
   public class EntityFrameworkRepository<TAggregateRoot> : Repository<TAggregateRoot>
     where TAggregateRoot : class, IAggregateRoot
   {
+    private readonly IEntityFrameworkRepositoryContext _efContext;
+
     public EntityFrameworkRepository(IRepositoryContext context)
       :base(context)
     {
+      if (context is IEntityFrameworkRepositoryContext)
+      {
+        this._efContext = context as IEntityFrameworkRepositoryContext;
+      }
+    }
+
+    private MemberExpression GetMemberInfo(LambdaExpression lambda)
+    {
+      if (lambda == null)
+        throw new ArgumentNullException(nameof(lambda));
+
+      MemberExpression memberExp = null;
+
+      if (lambda.Body.NodeType == ExpressionType.Convert)
+      {
+        memberExp = ((UnaryExpression)lambda.Body).Operand as MemberExpression;
+      } 
+      else if (lambda.Body.NodeType == ExpressionType.MemberAccess)
+      {
+        memberExp = lambda.Body as MemberExpression;
+      }
+
+      if (lambda == null)
+        throw new ArgumentException(nameof(lambda));
+
+      return memberExp;
+    }
+
+    private string GetEagerLoadingProperty(Expression<Func<TAggregateRoot, dynamic>> eagerLoadingProperty)
+    {
+      MemberExpression memberExpression = this.GetMemberInfo(eagerLoadingProperty);
+      var propertyName = memberExpression.Member.Name;
+      return propertyName;
     }
 
     protected override void DoAdd(TAggregateRoot aggregateRoot)
     {
-      throw new NotImplementedException();
+      this._efContext.RegisterNew<TAggregateRoot>(aggregateRoot);
     }
 
     protected override bool DoExists(ISpecification<TAggregateRoot> specification)
     {
-      throw new NotImplementedException();
+      var count = this._efContext.Context.Set<TAggregateRoot>().Count(specification.IsSatisfiedBy);
+      return count != 0;
     }
 
     protected override TAggregateRoot DoFind(ISpecification<TAggregateRoot> specification)
     {
-      throw new NotImplementedException();
+      return this._efContext.Context.Set<TAggregateRoot>().FirstOrDefault(specification.IsSatisfiedBy);
     }
 
     protected override TAggregateRoot DoFind(ISpecification<TAggregateRoot> specification, params System.Linq.Expressions.Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties)
