@@ -173,52 +173,109 @@ namespace FunFoodServer.Repositories.EntityFramework
 
     protected override IEnumerable<TAggregateRoot> DoFindAll(ISpecification<TAggregateRoot> specification, System.Linq.Expressions.Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, int pageNumber, int pageSize, params System.Linq.Expressions.Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties)
     {
-      throw new NotImplementedException();
+      if (pageNumber <= 0)
+        throw new ArgumentOutOfRangeException(nameof(pageNumber), pageNumber, "The pageNumber is one-based and should be larger than zero.");
+
+      if (pageSize <= 0)
+        throw new ArgumentOutOfRangeException(nameof(pageSize), pageSize, "The pageSize is one-based and should be larger than zero.");
+
+      var skip = (pageNumber - 1) * pageSize;
+      var take = pageSize;
+
+      var dbSet = this._efContext.Context.Set<TAggregateRoot>();
+      IEnumerable<TAggregateRoot> queryable = null;
+      // dealing with eagerLoadingProperties
+      if (eagerLoadingProperties != null &&
+          eagerLoadingProperties.Length > 0)
+      {
+        var eagerLoadingPath = "";
+        foreach (var eagerLoadingProperty in eagerLoadingProperties)
+        {
+          eagerLoadingPath = this.GetEagerLoadingProperty(eagerLoadingProperty);
+          dbSet.Include(eagerLoadingPath);
+        }
+        queryable = dbSet.Where(specification.IsSatisfiedBy);
+      }
+      else
+        queryable = dbSet.Where(specification.IsSatisfiedBy);
+      // dealing with sorting
+      if (sortPredicate != null)
+      {
+        switch (sortOrder)
+        {
+          case SortOrder.Ascending:
+            return queryable.OrderBy(sortPredicate.Compile()).Skip(skip).Take(take).ToList();
+          case SortOrder.Descending:
+            return queryable.OrderByDescending(sortPredicate.Compile()).Skip(skip).Take(take).ToList();
+          default:
+            break;
+        }
+      }
+      // no sorting arguments
+      return queryable.Skip(skip).Take(take).ToList();
     }
 
     protected override TAggregateRoot DoGet(ISpecification<TAggregateRoot> specification)
     {
-      throw new NotImplementedException();
+      TAggregateRoot result = this.DoFind(specification);
+      if (result == null)
+        throw new ArgumentException("Aggregate not found.");
+      return result;
     }
 
     protected override TAggregateRoot DoGet(ISpecification<TAggregateRoot> specification, params System.Linq.Expressions.Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties)
     {
-      throw new NotImplementedException();
+      TAggregateRoot result = this.DoFind(specification, eagerLoadingProperties);
+      if (result == null)
+        throw new ArgumentException("Aggregate not found.");
+      return result;
     }
 
     protected override IEnumerable<TAggregateRoot> DoGetAll(ISpecification<TAggregateRoot> specification, System.Linq.Expressions.Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder)
     {
-      throw new NotImplementedException();
+      var results = this.DoFindAll(specification, sortPredicate, sortOrder);
+      if (results == null || !results.Any())
+        throw new ArgumentException("Aggregate not found.");
+      return results;
     }
 
     protected override IEnumerable<TAggregateRoot> DoGetAll(ISpecification<TAggregateRoot> specification, System.Linq.Expressions.Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, int pageNumber, int pageSize)
     {
-      throw new NotImplementedException();
+      var results = this.DoFindAll(specification, sortPredicate, sortOrder, pageNumber, pageSize);
+      if (results == null || !results.Any())
+        throw new ArgumentException("Aggregate not found.");
+      return results;
     }
 
     protected override IEnumerable<TAggregateRoot> DoGetAll(ISpecification<TAggregateRoot> specification, System.Linq.Expressions.Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, params System.Linq.Expressions.Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties)
     {
-      throw new NotImplementedException();
+      var results = this.DoFindAll(specification, sortPredicate, sortOrder, eagerLoadingProperties);
+      if (results == null || !results.Any())
+        throw new ArgumentException("Aggregate not found.");
+      return results;
     }
 
     protected override IEnumerable<TAggregateRoot> DoGetAll(ISpecification<TAggregateRoot> specification, System.Linq.Expressions.Expression<Func<TAggregateRoot, dynamic>> sortPredicate, SortOrder sortOrder, int pageNumber, int pageSize, params System.Linq.Expressions.Expression<Func<TAggregateRoot, dynamic>>[] eagerLoadingProperties)
     {
-      throw new NotImplementedException();
+      var results = this.DoFindAll(specification, sortPredicate, sortOrder, pageNumber, pageSize, eagerLoadingProperties);
+      if (results == null || !results.Any())
+        throw new ArgumentException("Aggregate not found.");
+      return results;
     }
 
     protected override TAggregateRoot DoGetByKey(Guid Id)
     {
-      throw new NotImplementedException();
+      return this._efContext.Context.Set<TAggregateRoot>().Where(p => p.Id == Id).First();
     }
 
     protected override void DoRemove(TAggregateRoot aggregate)
     {
-      throw new NotImplementedException();
+      this._efContext.RegisterDelete<TAggregateRoot>(aggregate);
     }
 
     protected override void DoUpdate(TAggregateRoot aggregate)
     {
-      throw new NotImplementedException();
+      this._efContext.RegisterModified<TAggregateRoot>(aggregate);
     }
   }
 }
