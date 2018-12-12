@@ -21,5 +21,6 @@
 
   <ItemGroup>
     <Folder Include="EntityFramework\ModelConfigurations\" />
+    <Folder Include="specifications\" />
   </ItemGroup>
 </Project>
