@@ -2,7 +2,6 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using FunFoodServer.Domain.Model;
 using Microsoft.IdentityModel.Tokens;
 
 namespace FunFoodServer.Infrastructure
@@ -10,7 +9,7 @@ namespace FunFoodServer.Infrastructure
   public static class AuthenticateUtils
   {
 
-    public static string GenerateTokenForUser(User user, string Secret)
+    public static string GenerateTokenForUser(string ClaimValue, string Secret, string ClaimType = ClaimTypes.Name)
     {
       // generating token for user based on related data of user, like name, id
       var tokenHandler = new JwtSecurityTokenHandler();
@@ -19,7 +18,7 @@ namespace FunFoodServer.Infrastructure
       {
         Subject = new ClaimsIdentity(new Claim[]
         {
-          new Claim(ClaimTypes.Name, user.Id.ToString())
+          new Claim(ClaimType, ClaimValue)
         }),
         Expires = DateTime.UtcNow.AddDays(3),
         SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)

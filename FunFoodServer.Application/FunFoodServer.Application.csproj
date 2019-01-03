@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Class1.cs" />
+    <Compile Remove="DomainExtention\UserExtention.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FunFoodServer.Domain\FunFoodServer.Domain.csproj" />
+    <ProjectReference Include="..\FunFoodServer.Repositories\FunFoodServer.Repositories.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\" />
+    <Folder Include="Implementation\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.0.0" />
+  </ItemGroup>
+</Project>

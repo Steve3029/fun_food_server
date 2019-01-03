@@ -6,8 +6,8 @@ namespace FunFoodServer.Repositories.specifications
 {
   internal class EmailEqualsSpecification : StringEqualsSpecification<User>
   {
-    public EmailEqualsSpecification(string userName)
-      : base(userName)
+    public EmailEqualsSpecification(string email)
+      : base(email)
     {
     }
 

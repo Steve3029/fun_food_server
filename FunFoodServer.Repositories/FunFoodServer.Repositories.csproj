@@ -23,4 +23,7 @@
     <Folder Include="EntityFramework\ModelConfigurations\" />
     <Folder Include="specifications\" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="specifications\IsUserExistSpecification.cs" />
+  </ItemGroup>
 </Project>

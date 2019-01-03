@@ -8,7 +8,12 @@ namespace FunFoodServer.Repositories.EntityFramework
   public class EntityFrameworkRepositoryContext : RepositoryContext, IEntityFrameworkRepositoryContext
   {
 
-    private readonly ThreadLocal<DbContext> _dbContext = new ThreadLocal<DbContext>(() => new FunFoodDbContext());
+    private readonly ThreadLocal<DbContext> _dbContext;
+
+    public EntityFrameworkRepositoryContext(DbContext context)
+    {
+      _dbContext = new ThreadLocal<DbContext>(() => context);
+    }
 
     public DbContext Context
     {
