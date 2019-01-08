@@ -21,8 +21,7 @@ namespace FunFoodServer.Application
     {
       Mapper.Initialize(cfg =>
       {
-        cfg.CreateMap<LoginModel, User>();
-        cfg.CreateMap<User, LoginModel>();
+        cfg.CreateMap<User, AccountModel>();
       });
     }
   }
