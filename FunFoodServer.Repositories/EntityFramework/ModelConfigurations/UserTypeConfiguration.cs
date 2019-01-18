@@ -16,17 +16,13 @@ namespace FunFoodServer.Repositories.EntityFramework.ModelConfigurations
              .IsRequired()
              .HasMaxLength(100);
 
-      builder.Property(u => u.UserName)
+      builder.Property(u => u.PasswordHash)
              .IsRequired()
              .HasMaxLength(50);
 
-      builder.Property(u => u.Password)
+      builder.Property(u => u.PasswordSalt)
              .IsRequired()
-             .HasMaxLength(50);
-
-      builder.Property(u => u.PhotoUrl)
-             .HasColumnName("PhotoURL")
-             .HasMaxLength(100);
+             .HasMaxLength(32);
 
       builder.Property(u => u.CreatedDate)
              .HasDefaultValueSql("(getdate())");

@@ -15,6 +15,8 @@ namespace FunFoodServer.Domain.Model
 
       public string Gender { get; set; }
 
+      public string PhotoUrl { get; set; }
+
       public DateTime? Birthday { get; set; }
 
       public string Location { get; set; }

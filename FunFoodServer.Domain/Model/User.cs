@@ -16,13 +16,11 @@ namespace FunFoodServer.Domain.Model
 
     #region Properties
 
-    public string UserName { set; get; }
-
-    public string Password { set; get; }
-
     public string Email { set; get; }
 
-    public string PhotoUrl { get; set; }
+    public string PasswordHash { set; get; }
+
+    public string PasswordSalt { get; set; }
 
     public DateTime CreatedDate { get; set; }
 

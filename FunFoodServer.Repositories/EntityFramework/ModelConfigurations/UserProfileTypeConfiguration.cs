@@ -30,6 +30,10 @@ namespace FunFoodServer.Repositories.EntityFramework.ModelConfigurations
              .HasMaxLength(1)
              .HasDefaultValue("('M')");
 
+      builder.Property(u => u.PhotoUrl)
+             .HasColumnName("PhotoURL")
+             .HasMaxLength(100);
+
       builder.Property(up => up.Birthday)
              .HasColumnType("date");
 
