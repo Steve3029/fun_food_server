@@ -9,4 +9,7 @@
     <Folder Include="Repositories\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FunFoodServer.Infrastructure\FunFoodServer.Infrastructure.csproj" />
+  </ItemGroup>
 </Project>

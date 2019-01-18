@@ -14,6 +14,16 @@ namespace FunFoodServer.Domain.Model
       RecipeRatings = new HashSet<RecipeRating>();
     }
 
+    public void CreateUserProfile()
+    {
+      UserProfile = new UserProfile
+      {
+        Id = Guid.NewGuid(),
+        User = this,
+        UserId = this.Id
+      };
+    }
+
     #region Properties
 
     public string Email { set; get; }

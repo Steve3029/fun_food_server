@@ -35,7 +35,7 @@ namespace FunFoodServer.Repositories.EntityFramework
 
     protected override void OnConfiguring (DbContextOptionsBuilder optionsBuilder)
     {
-      optionsBuilder.UseSqlServer(@"Server=DESKTOP-8A51TKG;Database=FunFoodTest;User Id=chef;Password=123456;Trusted_Connection=True;");
+      optionsBuilder.UseSqlServer(@"");
     }
 
     protected override void OnModelCreating (ModelBuilder modelBuilder)
