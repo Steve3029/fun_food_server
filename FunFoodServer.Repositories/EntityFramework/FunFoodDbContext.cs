@@ -6,7 +6,7 @@ using System.IO;
 
 namespace FunFoodServer.Repositories.EntityFramework
 {
-  internal class FunFoodDbContext : DbContext
+  public class FunFoodDbContext : DbContext
   {
     public FunFoodDbContext()
     {
@@ -35,7 +35,7 @@ namespace FunFoodServer.Repositories.EntityFramework
 
     protected override void OnConfiguring (DbContextOptionsBuilder optionsBuilder)
     {
-      optionsBuilder.UseSqlServer(@"");
+      optionsBuilder.UseSqlServer(@"Server=localhost;Database=FunFood;User Id=sa;Password=funfood123!;");
     }
 
     protected override void OnModelCreating (ModelBuilder modelBuilder)

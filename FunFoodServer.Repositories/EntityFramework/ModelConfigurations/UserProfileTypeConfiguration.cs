@@ -1,4 +1,4 @@
-﻿using FunFoodServer.Domain.Model;
+using FunFoodServer.Domain.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -29,8 +29,8 @@ namespace FunFoodServer.Repositories.EntityFramework.ModelConfigurations
              .IsRequired()
              .HasMaxLength(1)
              .HasDefaultValue("('M')");
-
-      builder.Property(u => u.PhotoUrl)
+             
+      builder.Property(up => up.PhotoUrl)
              .HasColumnName("PhotoURL")
              .HasMaxLength(100);
 

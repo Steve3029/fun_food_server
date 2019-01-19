@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="AutoMapper" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FunFoodServer.Application\FunFoodServer.Application.csproj" />
+    <ProjectReference Include="..\FunFoodServer.Domain\FunFoodServer.Domain.csproj" />
+    <ProjectReference Include="..\FunFoodServer.Infrastructure\FunFoodServer.Infrastructure.csproj" />
+    <ProjectReference Include="..\FunFoodServer.Repositories\FunFoodServer.Repositories.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DTOs\" />
+    <Folder Include="Helpers\" />
+  </ItemGroup>
+</Project>

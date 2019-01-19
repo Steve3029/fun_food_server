@@ -15,13 +15,7 @@ namespace FunFoodServer.Repositories
     {
     }
 
-    public bool CheckPassword(string email, string password)
-    {
-      return this.Exists(new AndSpecification<User>(new EmailEqualsSpecification(email), 
-        new PasswordEqualsSpecification(password)));
-    }
-
-    public bool EmailExists(string email)
+    public bool UserExists(string email)
     {
       return this.Exists(new EmailEqualsSpecification(email));
     }
@@ -29,11 +23,6 @@ namespace FunFoodServer.Repositories
     public User GetUserByEmail(string email)
     {
       return this.Get(new EmailEqualsSpecification(email));
-    }
-
-    public IEnumerable<User> GetUserByUserName(string userName)
-    {
-      return this.GetAll(new UserNameEqualsSpecification(userName));
     }
   }
 }

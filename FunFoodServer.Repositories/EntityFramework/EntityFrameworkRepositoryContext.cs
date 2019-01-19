@@ -22,19 +22,22 @@ namespace FunFoodServer.Repositories.EntityFramework
 
     public override void RegisterNew<TAggregateRoot>(TAggregateRoot entity)
     {
-      _dbContext.Value.Entry<TAggregateRoot>(entity).State = EntityState.Added;
+      //_dbContext.Value.Entry<TAggregateRoot>(entity).State = EntityState.Added;
+      _dbContext.Value.Add<TAggregateRoot>(entity);
       Committed = false;
     }
 
     public override void RegisterModified<TAggregateRoot>(TAggregateRoot entity)
     {
-      _dbContext.Value.Entry<TAggregateRoot>(entity).State = EntityState.Modified;
+      //_dbContext.Value.Entry<TAggregateRoot>(entity).State = EntityState.Modified;
+      _dbContext.Value.Update<TAggregateRoot>(entity);
       Committed = false;
     }
 
     public override void RegisterDelete<TAggregateRoot>(TAggregateRoot entity)
     {
-      _dbContext.Value.Entry<TAggregateRoot>(entity).State = EntityState.Deleted;
+      //_dbContext.Value.Entry<TAggregateRoot>(entity).State = EntityState.Deleted;
+      _dbContext.Value.Remove<TAggregateRoot>(entity);
       Committed = false;
     }
 
