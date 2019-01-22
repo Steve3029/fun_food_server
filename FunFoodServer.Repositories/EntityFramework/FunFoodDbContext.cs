@@ -33,10 +33,10 @@ namespace FunFoodServer.Repositories.EntityFramework
 
     public DbSet<UserProfile> UserProfiles { get; set; }
 
-    protected override void OnConfiguring (DbContextOptionsBuilder optionsBuilder)
-    {
-      optionsBuilder.UseSqlServer(@"Server=localhost;Database=FunFood;User Id=sa;Password=funfood123!;");
-    }
+    //protected override void OnConfiguring (DbContextOptionsBuilder optionsBuilder)
+    //{
+    //  optionsBuilder.UseSqlServer(@"Server=localhost;Database=FunFood;User Id=sa;Password=funfood123!;");
+    //}
 
     protected override void OnModelCreating (ModelBuilder modelBuilder)
     {

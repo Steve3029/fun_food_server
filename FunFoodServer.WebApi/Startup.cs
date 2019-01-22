@@ -9,7 +9,17 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using AutoMapper;
+using FunFoodServer.Repositories.EntityFramework;
+using Microsoft.EntityFrameworkCore;
+using FunFoodServer.WebApi.Helpers;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using FunFoodServer.Application;
+using FunFoodServer.Application.Implementation;
+using FunFoodServer.Domain.Repositories;
+using FunFoodServer.Repositories;
 
 namespace FunFoodServer.WebApi
 {
@@ -25,7 +35,39 @@ namespace FunFoodServer.WebApi
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
+      var dbConnection = Configuration.GetValue<string>("DefaultConnection");
+      services.AddDbContext<FunFoodDbContext>(options => options.UseSqlServer(dbConnection));
       services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+      services.AddAutoMapper();
+
+      // configuration object
+      var appSettingsSection = Configuration.GetSection("AppSettings");
+      services.Configure<AppSettings>(appSettingsSection);
+
+      // JWT configuration
+      var appSettings = appSettingsSection.Get<AppSettings>();
+      var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+      services.AddAuthentication(authOptions =>
+      {
+        authOptions.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        authOptions.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+      })
+      .AddJwtBearer(jwtConfig => 
+      {
+        jwtConfig.TokenValidationParameters = new TokenValidationParameters
+        {
+          ValidateIssuer = true,
+          ValidIssuer = appSettings.Issuer,
+          ValidateAudience = false,
+          ValidateLifetime = true,
+          ValidateIssuerSigningKey = true,
+          IssuerSigningKey = new SymmetricSecurityKey(key)
+        };
+      });
+      // End JWT configuring
+      services.AddScoped<IIdentityService, IdentityServiceImpl>();
+      services.AddScoped<IRepositoryContext, EntityFrameworkRepositoryContext>();
+      services.AddScoped<IUserRepository, UserRepository>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

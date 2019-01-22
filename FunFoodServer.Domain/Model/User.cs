@@ -28,6 +28,8 @@ namespace FunFoodServer.Domain.Model
 
     public string Email { set; get; }
 
+    public string UserName { get; set; }
+
     public string PasswordHash { set; get; }
 
     public string PasswordSalt { get; set; }

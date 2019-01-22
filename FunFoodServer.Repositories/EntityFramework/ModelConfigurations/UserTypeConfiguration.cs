@@ -16,6 +16,10 @@ namespace FunFoodServer.Repositories.EntityFramework.ModelConfigurations
              .IsRequired()
              .HasMaxLength(100);
 
+      builder.Property(u => u.UserName)
+             .IsRequired()
+             .HasMaxLength(50);
+
       builder.Property(u => u.PasswordHash)
              .IsRequired()
              .HasMaxLength(50);
