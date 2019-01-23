@@ -7,9 +7,11 @@ using Microsoft.Extensions.Options;
 using FunFoodServer.WebApi.DTOs;
 using FunFoodServer.Domain.Model;
 using FunFoodServer.Domain;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FunFoodServer.WebApi.Controllers
 {
+  [Authorize]
   [ApiController]
   [Route("api/v1/[controller]")]
   public class IdentityController : ControllerBase
@@ -28,6 +30,7 @@ namespace FunFoodServer.WebApi.Controllers
     }
 
     // Post: api/v1/signin
+    [AllowAnonymous]
     [HttpPost("signin")]
     public IActionResult SignIn(UserDTO userDTO)
     {
@@ -56,6 +59,7 @@ namespace FunFoodServer.WebApi.Controllers
     }
 
     // Post: api/v1/signup
+    [AllowAnonymous]
     [HttpPost("signup")]
     public IActionResult SignUp(UserDTO userDTO)
     {

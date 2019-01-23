@@ -87,6 +87,7 @@ namespace FunFoodServer.WebApi
       }
 
       app.UseHttpsRedirection();
+      app.UseAuthentication();
       app.UseMvc();
     }
   }
