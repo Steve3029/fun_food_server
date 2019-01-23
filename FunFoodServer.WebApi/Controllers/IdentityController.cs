@@ -27,15 +27,16 @@ namespace FunFoodServer.WebApi.Controllers
       this._appSettings = appSettings.Value;
     }
 
+    // Post: api/v1/signin
     [HttpPost("signin")]
     public IActionResult SignIn(UserDTO userDTO)
     {
       try
       {
-        ValidationResult result = _identityService.ValidationPassword(userDTO.Email, userDTO.PassWord);
+        ValidationResult result = _identityService.ValidationPassword(userDTO.Email, userDTO.Password);
 
         if (!result.Succeeded)
-          return BadRequest(422);
+          return StatusCode(422);
 
         // generate a token and return
         var user = result.User;
@@ -50,19 +51,20 @@ namespace FunFoodServer.WebApi.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest("Password or Email is empty.");
+        return BadRequest("Data of register cannot be null.");
       }
     }
 
+    // Post: api/v1/signup
     [HttpPost("signup")]
     public IActionResult SignUp(UserDTO userDTO)
     {
       try
       {
         var user = _mapper.Map<User>(userDTO);
-        var userId = _identityService.SignUp(user, userDTO.PassWord);
+        var userId = _identityService.SignUp(user, userDTO.Password);
 
-        return CreatedAtAction("SignIn", new UserDTO() { Id = user.Id, Email = user.Email });
+        return CreatedAtAction("SignIn", new UserDTO() { Id = userId, Email = user.Email });
 
       }
       catch(DomainException dx)
@@ -71,7 +73,7 @@ namespace FunFoodServer.WebApi.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest("Email or Password is empty.");
+        return BadRequest("Information required to sign up cannot be empty.");
       }
     }
   }

@@ -13,6 +13,6 @@ namespace FunFoodServer.Application
       this._context = context;
     }
 
-    public IRepositoryContext Context { get; }
+    public IRepositoryContext Context { get { return this._context; } }
   }
 }

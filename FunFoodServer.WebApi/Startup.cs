@@ -36,6 +36,8 @@ namespace FunFoodServer.WebApi
     public void ConfigureServices(IServiceCollection services)
     {
       var dbConnection = Configuration.GetValue<string>("DefaultConnection");
+      Console.WriteLine(dbConnection);
+
       services.AddDbContext<FunFoodDbContext>(options => options.UseSqlServer(dbConnection));
       services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
       services.AddAutoMapper();
@@ -65,6 +67,7 @@ namespace FunFoodServer.WebApi
         };
       });
       // End JWT configuring
+      services.AddScoped<DbContext, FunFoodDbContext>();
       services.AddScoped<IIdentityService, IdentityServiceImpl>();
       services.AddScoped<IRepositoryContext, EntityFrameworkRepositoryContext>();
       services.AddScoped<IUserRepository, UserRepository>();

@@ -28,7 +28,7 @@ namespace FunFoodServer.Repositories.EntityFramework.ModelConfigurations
       builder.Property(up => up.Gender)
              .IsRequired()
              .HasMaxLength(1)
-             .HasDefaultValue("('M')");
+             .HasDefaultValue('F');
              
       builder.Property(up => up.PhotoUrl)
              .HasColumnName("PhotoURL")

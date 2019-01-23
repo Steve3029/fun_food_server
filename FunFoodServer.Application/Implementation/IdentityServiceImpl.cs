@@ -46,6 +46,9 @@ namespace FunFoodServer.Application.Implementation
       if (string.IsNullOrWhiteSpace(newUser.Email))
         throw new ArgumentNullException(nameof(newUser.Email));
 
+      if (string.IsNullOrWhiteSpace(newUser.UserName))
+        throw new ArgumentNullException(nameof(newUser.UserName));
+
       if (string.IsNullOrWhiteSpace(password))
         throw new ArgumentNullException(nameof(password));
 
@@ -59,7 +62,7 @@ namespace FunFoodServer.Application.Implementation
       newUser.PasswordHash = hashedPasswordAndSalt[1];
       newUser.CreateUserProfile();
       _userRepository.Add(newUser);
-      Context.Commit();
+      this.Context.Commit();
       return newUser.Id;
     }
   }

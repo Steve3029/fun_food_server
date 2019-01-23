@@ -26,7 +26,7 @@ namespace FunFoodServer.Repositories.EntityFramework.ModelConfigurations
 
       builder.Property(u => u.PasswordSalt)
              .IsRequired()
-             .HasMaxLength(32);
+             .HasMaxLength(50);
 
       builder.Property(u => u.CreatedDate)
              .HasDefaultValueSql("(getdate())");
