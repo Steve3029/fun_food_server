@@ -11,14 +11,17 @@ namespace FunFoodServer.Infrastructure
         throw new ArgumentNullException(nameof(password));
       var salt = GenerateSalt(16);
       var bytes = KeyDerivation.Pbkdf2(password, salt, KeyDerivationPrf.HMACSHA512, 10000, 16);
-      return $"{ Convert.ToBase64String(salt) } : { Convert.ToBase64String(bytes) }";
+      var saltLiteral = Convert.ToBase64String(salt);
+      var hashedPassword = Convert.ToBase64String(bytes);
+      return $"{ saltLiteral }:{ hashedPassword }";
     }
 
     public static bool VerifyHashedPassword(string password, string hashedPassword, string salt)
     {
       var byteSalt = Convert.FromBase64String(salt);
       var bytes = KeyDerivation.Pbkdf2(password, byteSalt, KeyDerivationPrf.HMACSHA512, 10000, 16);
-      return hashedPassword.Equals(Convert.ToBase64String(bytes));
+      var passwordForVerify = Convert.ToBase64String(bytes);
+      return hashedPassword.Equals(passwordForVerify);
     }
 
     private static byte[] GenerateSalt(int length)

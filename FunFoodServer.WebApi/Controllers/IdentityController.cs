@@ -48,6 +48,7 @@ namespace FunFoodServer.WebApi.Controllers
         return Ok(new UserDTO() 
         {
           Id = user.Id,
+          UserName = user.UserName,
           Email = user.Email,
           Token = token
         });
