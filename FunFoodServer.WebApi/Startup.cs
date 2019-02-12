@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -20,6 +18,7 @@ using FunFoodServer.Application;
 using FunFoodServer.Application.Implementation;
 using FunFoodServer.Domain.Repositories;
 using FunFoodServer.Repositories;
+using Microsoft.AspNetCore.Cors;
 
 namespace FunFoodServer.WebApi
 {
@@ -40,6 +39,7 @@ namespace FunFoodServer.WebApi
 
       services.AddDbContext<FunFoodDbContext>(options => options.UseSqlServer(dbConnection));
       services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+      services.AddCors();
       services.AddAutoMapper();
 
       // configuration object
@@ -85,7 +85,9 @@ namespace FunFoodServer.WebApi
         // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
         app.UseHsts();
       }
-
+      app.UseCors(builder =>
+        builder.WithOrigins()
+               .AllowAnyHeader());
       app.UseHttpsRedirection();
       app.UseAuthentication();
       app.UseMvc();
