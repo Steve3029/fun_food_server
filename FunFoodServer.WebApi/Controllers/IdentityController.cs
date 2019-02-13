@@ -39,7 +39,7 @@ namespace FunFoodServer.WebApi.Controllers
         ValidationResult result = _identityService.ValidationPassword(userDTO.Email, userDTO.Password);
 
         if (!result.Succeeded)
-          return StatusCode(422);
+          return StatusCode(422, "Email or Password is not correct.");
 
         // generate a token and return
         var user = result.User;
@@ -55,7 +55,7 @@ namespace FunFoodServer.WebApi.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest("Data of register cannot be null.");
+        return BadRequest("Sorry sign in is failed.");
       }
     }
 
@@ -67,18 +67,26 @@ namespace FunFoodServer.WebApi.Controllers
       try
       {
         var user = _mapper.Map<User>(userDTO);
-        var userId = _identityService.SignUp(user, userDTO.Password);
+        user = _identityService.SignUp(user, userDTO.Password);
 
-        return CreatedAtAction("SignIn", new UserDTO() { Id = userId, Email = user.Email });
+        var token = JwtTokenGenerator.GenerateToken(user, _appSettings.Issuer, _appSettings.Secret);
+
+        return Ok(new UserDTO()
+        {
+          Id = user.Id,
+          UserName = user.UserName,
+          Email = user.Email,
+          Token = token
+        });
 
       }
       catch(DomainException dx)
       {
-        return Conflict();
+        return Conflict("This email has already been registered.");
       }
       catch (Exception ex)
       {
-        return BadRequest("Information required to sign up cannot be empty.");
+        return BadRequest("Sorry, sign up is failed.");
       }
     }
   }

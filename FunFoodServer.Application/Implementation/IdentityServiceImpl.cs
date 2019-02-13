@@ -38,7 +38,7 @@ namespace FunFoodServer.Application.Implementation
       return new ValidationResult(true, user);
     }
 
-    public Guid SignUp(User newUser, string password)
+    public User SignUp(User newUser, string password)
     {
       if (newUser == null)
         throw new ArgumentNullException(nameof(newUser));
@@ -63,7 +63,7 @@ namespace FunFoodServer.Application.Implementation
       newUser.CreateUserProfile();
       _userRepository.Add(newUser);
       this.Context.Commit();
-      return newUser.Id;
+      return newUser;
     }
   }
 }
