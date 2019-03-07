@@ -79,7 +79,7 @@ namespace FunFoodServer.WebApi.Controllers
     }
 
     // Post: api/v1/images/destroy
-    [HttpGet("destroy/{desc}")]
+    [HttpGet("destroy")]
     public IActionResult Destroy(string desc)
     {
       if (string.IsNullOrWhiteSpace(desc))
