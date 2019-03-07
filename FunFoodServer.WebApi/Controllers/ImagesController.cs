@@ -45,7 +45,7 @@ namespace FunFoodServer.WebApi.Controllers
       if (size > 0)
       {
         // save image to upload folder
-        var fileExt = UtilityOfUpload.GetFileExt(files[0].Name);
+        var fileExt = UtilityOfUpload.GetFileExt(image.FileName);
         var newFileName = $"{Guid.NewGuid().ToString()}.{fileExt}";
         var filePath = Path.Combine(Directory.GetCurrentDirectory(), "upload", newFileName);
         try
