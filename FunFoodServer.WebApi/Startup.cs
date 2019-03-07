@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using AutoMapper;
 using FunFoodServer.Repositories.EntityFramework;
 using Microsoft.EntityFrameworkCore;
@@ -45,6 +42,10 @@ namespace FunFoodServer.WebApi
       // configuration object
       var appSettingsSection = Configuration.GetSection("AppSettings");
       services.Configure<AppSettings>(appSettingsSection);
+
+      // cloudinary configuration
+      var cloudinarySection = Configuration.GetSection("Cloudinary");
+      services.Configure<CloudinaryConfig>(cloudinarySection);
 
       // JWT configuration
       var appSettings = appSettingsSection.Get<AppSettings>();
@@ -86,7 +87,7 @@ namespace FunFoodServer.WebApi
         app.UseHsts();
       }
       app.UseCors(builder =>
-        builder.WithOrigins()
+        builder.AllowAnyOrigin()
                .AllowAnyHeader());
       app.UseHttpsRedirection();
       app.UseAuthentication();
