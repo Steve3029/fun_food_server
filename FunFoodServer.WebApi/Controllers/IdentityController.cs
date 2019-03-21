@@ -1,13 +1,13 @@
 ﻿using System;
-using FunFoodServer.Application;
-using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
-using FunFoodServer.WebApi.Helpers;
-using Microsoft.Extensions.Options;
-using FunFoodServer.WebApi.DTOs;
-using FunFoodServer.Domain.Model;
+using FunFoodServer.Application;
 using FunFoodServer.Domain;
+using FunFoodServer.Domain.Model;
+using FunFoodServer.WebApi.DTOs;
+using FunFoodServer.WebApi.Helpers;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace FunFoodServer.WebApi.Controllers
 {
@@ -55,7 +55,7 @@ namespace FunFoodServer.WebApi.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest("Sorry sign in is failed.");
+        return BadRequest(ex.Message);
       }
     }
 
@@ -82,11 +82,11 @@ namespace FunFoodServer.WebApi.Controllers
       }
       catch(DomainException dx)
       {
-        return Conflict("This email has already been registered.");
+        return Conflict($"This email has already been registered. Detail: {dx.Message}");
       }
       catch (Exception ex)
       {
-        return BadRequest("Sorry, sign up is failed.");
+        return BadRequest(ex.Message);
       }
     }
   }
