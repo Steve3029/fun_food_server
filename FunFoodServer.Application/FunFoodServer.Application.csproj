@@ -9,6 +9,7 @@
     <Compile Remove="DomainExtention\UserExtention.cs" />
     <Compile Remove="Model\AccountModel.cs" />
     <Compile Remove="Model\LoginModel.cs" />
+    <Compile Remove="Implementation\CategoryServiceImpl.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FunFoodServer.Domain\FunFoodServer.Domain.csproj" />
