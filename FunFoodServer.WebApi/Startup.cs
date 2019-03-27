@@ -15,7 +15,6 @@ using FunFoodServer.Application;
 using FunFoodServer.Application.Implementation;
 using FunFoodServer.Domain.Repositories;
 using FunFoodServer.Repositories;
-using Microsoft.AspNetCore.Cors;
 
 namespace FunFoodServer.WebApi
 {
@@ -72,6 +71,8 @@ namespace FunFoodServer.WebApi
       services.AddScoped<IIdentityService, IdentityServiceImpl>();
       services.AddScoped<IRepositoryContext, EntityFrameworkRepositoryContext>();
       services.AddScoped<IUserRepository, UserRepository>();
+      services.AddScoped<ICategoryRepository, CategoryRepository>();
+      services.AddScoped<IRecipeService, RecipeServiceImpl>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

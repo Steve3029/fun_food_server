@@ -235,7 +235,7 @@ namespace FunFoodServer.Repositories.EntityFramework
     {
       var results = this.DoFindAll(specification, sortPredicate, sortOrder);
       if (results == null || !results.Any())
-        throw new ArgumentException("Aggregate not found.");
+        return null;
       return results;
     }
 

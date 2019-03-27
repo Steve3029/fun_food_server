@@ -1,5 +1,5 @@
 ﻿using System;
-using FunFoodServer.Domain.Repositories;
+using FunFoodServer.Application;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,24 +10,32 @@ namespace FunFoodServer.WebApi.Controllers
   [Route("api/v1/[controller]")]
   public class RecipeController : ControllerBase
   {
-    private readonly ICategoryRepository _catetoryRepository;
+    private readonly IRecipeService _recipeService;
 
-    public RecipeController(ICategoryRepository categoryRepository)
+    public RecipeController(IRecipeService recipeService)
     {
-      this._catetoryRepository = categoryRepository;
+      this._recipeService = recipeService;
     }
 
     // Get: api/v1/recipe/categories
+    [AllowAnonymous]
     [HttpGet("categories")]
-    public IActionResult GetRecipeCategories()
+    public IActionResult GetAllCategories()
     {
-      var categoryList = this._catetoryRepository.GetAllCategories();
-      if(categoryList == null)
+      try
       {
-        return Ok(null);
-      }
+        var categoryList = this._recipeService.GetAllCategories();
+        if (categoryList == null)
+        {
+          return Ok(null);
+        }
 
-      return Ok(categoryList);
+        return Ok(categoryList);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
     }
   }
 }
