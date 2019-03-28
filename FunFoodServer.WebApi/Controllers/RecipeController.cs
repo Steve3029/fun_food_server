@@ -18,7 +18,7 @@ namespace FunFoodServer.WebApi.Controllers
     }
 
     // Get: api/v1/recipe/categories
-    [AllowAnonymous]
+
     [HttpGet("categories")]
     public IActionResult GetAllCategories()
     {

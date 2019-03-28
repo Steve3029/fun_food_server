@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using Microsoft.Extensions.Options;
@@ -9,6 +10,7 @@ using System.IO;
 
 namespace FunFoodServer.WebApi.Controllers
 {
+  [Authorize]
   [ApiController]
   [Route("api/v1/[controller]")]
   public class ImagesController : ControllerBase
