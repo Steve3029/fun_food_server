@@ -28,7 +28,7 @@ namespace FunFoodServer.Repositories.EntityFramework.ModelConfigurations
       builder.Property(r => r.CoverImageUrl)
              .IsRequired()
              .HasColumnName("CoverImageURL")
-             .HasMaxLength(100);
+             .HasMaxLength(200);
 
       builder.Property(r => r.Serving)
              .IsRequired()

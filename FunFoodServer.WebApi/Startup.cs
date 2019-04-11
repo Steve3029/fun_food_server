@@ -72,6 +72,7 @@ namespace FunFoodServer.WebApi
       services.AddScoped<IRepositoryContext, EntityFrameworkRepositoryContext>();
       services.AddScoped<IUserRepository, UserRepository>();
       services.AddScoped<ICategoryRepository, CategoryRepository>();
+      services.AddScoped<IRecipeRepository, RecipeRepository>();
       services.AddScoped<IRecipeService, RecipeServiceImpl>();
     }
 

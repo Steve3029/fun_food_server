@@ -20,7 +20,7 @@ namespace FunFoodServer.Repositories.EntityFramework.ModelConfigurations
 
       builder.Property(s => s.ImageUrl)
              .HasColumnName("ImageURL")
-             .HasMaxLength(100);
+             .HasMaxLength(200);
 
       builder.Property(s => s.Description)
              .IsRequired()

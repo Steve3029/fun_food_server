@@ -1,6 +1,4 @@
-﻿using System;
-using FunFoodServer.Domain.Repositories;
-using FunFoodServer.Domain.Model;
+﻿using FunFoodServer.Domain.Repositories;
 
 namespace FunFoodServer.Application
 {

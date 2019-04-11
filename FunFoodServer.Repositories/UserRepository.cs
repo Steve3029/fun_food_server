@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using FunFoodServer.Domain.Model;
+﻿using FunFoodServer.Domain.Model;
 using FunFoodServer.Domain.Repositories;
-using FunFoodServer.Domain.Specifications;
 using FunFoodServer.Repositories.EntityFramework;
 using FunFoodServer.Repositories.specifications;
 

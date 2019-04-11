@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FunFoodServer.Domain.Model
 {
@@ -35,6 +34,5 @@ namespace FunFoodServer.Domain.Model
     public ICollection<Favorite> Favorites { get; set; }
 
     public DateTime CreateDate { get; set; }
-
   }
 }
