@@ -56,6 +56,7 @@ namespace FunFoodServer.WebApi.Controllers
         var instructions = this._mapper.Map<Instruction[]>(recipeDTO.CookSteps);
         this._recipeService.AddRecipe(recipe, Guid.Parse(ownerIdStr), 
           ingredients, instructions);
+        Recipe addedRecipe = null;
         return Ok();
       }
       catch (ArgumentNullException ex)
