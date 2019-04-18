@@ -25,11 +25,19 @@ namespace FunFoodServer.Application.Implementation
       return this._categoryRepository.GetAllCategories();
     }
 
+    public Recipe GetRecipeByKey(Guid key)
+    {
+      if (key == Guid.Empty)
+        throw new ArgumentNullException(nameof(key));
+
+      return this._recipeRepository.GetRecipeByKeyWithIngredientsAndInstructions(key);
+    }
+
     public void UpdateRecipe(Recipe recipe, List<Ingredient> ingredients,
                        List<Instruction> instructions)
     {
       // Rebuild Recipe from DB
-      var orgRecipe = this._recipeRepository.GetCompletedRecipeByKey(recipe.Id);
+      var orgRecipe = this._recipeRepository.GetRecipeByKeyWithIngredientsAndInstructions(recipe.Id);
       // Replace properties' value with new one
       orgRecipe.Title = recipe.Title;
       orgRecipe.Subtitle = recipe.Subtitle;
@@ -45,7 +53,7 @@ namespace FunFoodServer.Application.Implementation
       this.Context.Commit();
     }
 
-    public void AddRecipe(Recipe recipe, Guid ownerId,
+    public Guid AddRecipe(Recipe recipe, Guid ownerId,
       Ingredient[] ingredients, Instruction[] instructions)
     {
       if (recipe == null)
@@ -60,13 +68,14 @@ namespace FunFoodServer.Application.Implementation
       if (instructions == null)
         throw new ArgumentNullException(nameof(instructions));
 
-      this.RecipeCreatingFactory(recipe, ownerId, ingredients, instructions);
+      var newRecipe = this.RecipeCreatingFactory(recipe, ownerId, ingredients, instructions);
 
-      this._recipeRepository.Add(recipe);
+      this._recipeRepository.Add(newRecipe);
       this.Context.Commit();
+      return newRecipe.Id;
     }
 
-    private void RecipeCreatingFactory(Recipe recipe, Guid ownerId,
+    private Recipe RecipeCreatingFactory(Recipe recipe, Guid ownerId,
       Ingredient[] ingredients, Instruction[] instructions)
     {
       var recipeId = Guid.NewGuid();
@@ -90,6 +99,7 @@ namespace FunFoodServer.Application.Implementation
 
       recipe.Ingredients = new List<Ingredient>(ingredients);
       recipe.Instructions = new List<Instruction>(instructions);
+      return recipe;
     }
   }
 }

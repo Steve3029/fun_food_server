@@ -14,7 +14,7 @@ namespace FunFoodServer.Repositories
     {
     }
 
-    public Recipe GetCompletedRecipeByKey(Guid key)
+    public Recipe GetRecipeByKeyWithIngredientsAndInstructions(Guid key)
     {
       if (key == null)
         throw new ArgumentNullException(nameof(key));

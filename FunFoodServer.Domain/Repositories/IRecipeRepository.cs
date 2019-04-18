@@ -5,6 +5,6 @@ namespace FunFoodServer.Domain.Repositories
 {
   public interface IRecipeRepository : IRepository<Recipe>
   {
-    Recipe GetCompletedRecipeByKey(Guid key);
+    Recipe GetRecipeByKeyWithIngredientsAndInstructions(Guid key);
   }
 }

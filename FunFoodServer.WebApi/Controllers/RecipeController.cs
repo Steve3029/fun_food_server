@@ -53,11 +53,14 @@ namespace FunFoodServer.WebApi.Controllers
       {
         var recipe = this._mapper.Map<Recipe>(recipeDTO);
         var ingredients = this._mapper.Map<Ingredient[]>(recipeDTO.Ingredients);
-        var instructions = this._mapper.Map<Instruction[]>(recipeDTO.CookSteps);
-        this._recipeService.AddRecipe(recipe, Guid.Parse(ownerIdStr), 
+        var instructions = this._mapper.Map<Instruction[]>(recipeDTO.Instructions);
+        var addedRecipeId = this._recipeService.AddRecipe(recipe, Guid.Parse(ownerIdStr), 
           ingredients, instructions);
-        Recipe addedRecipe = null;
-        return Ok();
+        // convert recipe into dto and return
+        var addedRecipe = this._recipeService.GetRecipeByKey(addedRecipeId);
+        var addedRecipeDTO = this._mapper.Map<RecipeDTO>(addedRecipe);
+
+        return Ok(addedRecipeDTO);
       }
       catch (ArgumentNullException ex)
       {

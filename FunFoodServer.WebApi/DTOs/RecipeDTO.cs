@@ -19,6 +19,6 @@ namespace FunFoodServer.WebApi.DTOs
 
     public IngredientDTO[] Ingredients { get; set; }
 
-    public InstructionDTO[] CookSteps { get; set; }
+    public InstructionDTO[] Instructions { get; set; }
   }
 }

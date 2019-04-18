@@ -5,8 +5,8 @@ namespace FunFoodServer.WebApi.DTOs
   {
     public int OrderNumber { get; set; }
 
-    public string Shotcut { get; set; }
+    public string ImageUrl { get; set; }
 
-    public string Instruction { get; set; }
+    public string Description { get; set; }
   }
 }
